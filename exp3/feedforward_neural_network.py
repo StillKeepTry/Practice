@@ -5,7 +5,7 @@ from sklearn import datasets
 import numpy as np
 from matplotlib import pyplot
 
-import IPython
+import IPython, time
 
 class FFconfig:
     nn_input_dim = 2
@@ -112,9 +112,12 @@ def build_model(x, y, nn_hdim, epoch=1000, print_loss=None):
     return model
 
 def main():
+    start = time.clock()
     x, y = generate_data()
     model = build_model(x, y, 10, epoch=1000, print_loss=calculate_loss)
     plot_decision_boundary(lambda x : predict(model, x), x, y)
+    end = time.clock()
+    print "program cost %f s" % (end - start)
 
 if __name__ == "__main__":
     main()
